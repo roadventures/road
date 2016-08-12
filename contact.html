@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<title>Roadventures</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+	</head>
+
+	<body>
+		<header class="site-header" role="banner">
+			<nav class="navbar navbar-default my-pages-navbar" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a id="logo" class="navbar-brand" href="index.html">Roadventures</a>
+          </div>
+					<div id="navbar" class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right my-pages-menu">
+							<li role="presentation"><a href="index.html">Home</a></li>
+							<li role="presentation" class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" href="destinations.html" role="button" aria-haspopup="true" aria-expanded="false">Destinations <span class="caret"></span></a>
+								<ul role="menu" class="dropdown-menu my-menu-dropdown">
+									<li><a href="europe.html">Europe</a></li>
+									<li><a href="index.html">United States</a></li>
+                  <li><a href="middle-east.html">Middle East</a></li>
+                  <li><a href="asia.html">Asia</a></li> 
+								</ul>
+							</li>
+               <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="routes.html" role="button" aria-haspopup="true" aria-expanded="false">Road Trips <span class="caret"></span></a>
+                <ul class="dropdown-menu my-menu-dropdown">
+                  <li><a href="index.html">Europe</a></li>
+                  <li><a href="index.html">United States</a></li>
+                  <li><a href="index.html">Middle East</a></li>
+                  <li><a href="index.html">Asia</a></li>  
+                </ul>
+              </li>
+              <li role="presentation" class="hidden">
+                <a href="inspiration.html">Get Inspired</a>
+              </li>
+              <li role="presentation">
+                <a href="about.html">About</a>
+              </li>
+              <li role="presentation" class="active">
+                <a href="contact.html">Contact</a>
+              </li>
+						</ul>
+    			</div> <!-- /.nav-collapse -->
+				</div> <!-- /.container -->
+			</nav> <!-- /.navbar -->
+		</header>
+
+    <div class="container-fluid contact-container">
+<!--       <div class="row my-top-banner">
+        <div class="my-top-banner-image">
+          <img src="images/middle-east/banner/017.jpg" alt="View of neuschwanstein castle, Germany">
+        </div>
+      </div> -->  
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="form-container">
+          <form id="contact-form" action="#"> <!--method="post" action="http://rana.carlstrom.fi/Roadventures/email-submit-form.php">-->
+            <div>
+              <h1>Contact Us</h1>
+            </div>
+            <div class="input">
+              <input required type="text" id="contact-first-name" name="first-name" placeholder="First name"></input>
+            </div>
+            <div class="input">
+              <input required type="text" id="contact-last-name" name="last-name" placeholder="Last name"></input>
+            </div>
+            <div class="input big">
+              <input required type="email" id="contact-email" name="email" placeholder="Email"></input>
+            </div>
+            <div class="input big">
+              <textarea required name="message" id="contact-message" placeholder="Your message"></textarea>
+            </div>
+            <div>
+              <input type="button" name="submit" id="submit-button" value="Send your message" onClick="SendEmailForm();"></input> 
+            </div>
+          </form>
+        </div>
+      </div><!--/row-->
+    </div><!--/.container-->
+
+    <footer class="panel-footer">
+        <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6 col-md-3">
+                <h2>ABOUT US</h2>
+                <ul>
+                      <li><a href="about.html#aboutus-team">Our Team</a></li>
+                      <li><a href="about.html#aboutus-passion">Our Passion</a></li>
+                      <li><a href="about.html#aboutus-partners">Our Partners</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                  <h2>DESTINATIONS</h2>
+                <ul>
+                  <li><a href="europe.html">Europe</a></li>
+                      <li><a href="united-states.html">United States</a></li>
+                      <li><a href="middle-east.html">Middle East</a></li>
+                      <li><a href="asia.html">Asia</a></li> 
+                </ul>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                  <h2>ROUTES</h2>
+                <ul>
+                  <li><a href="europe-routes.html">Europe</a></li>
+                      <li><a href="united-states-routes.html">United States</a></li>
+                      <li><a href="middle-east-routes.html">Middle East</a></li>
+                      <li><a href="asia-routes.html">Asia</a></li> 
+                </ul>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <h2>CONTACT US</h2>
+            <div class="social">
+              <a href="https://www.facebook.com/Roadventures-1610522102420827/?ref=aymt_homepage_panel" title="Follow us on Facebook" class="facebook" target="_blank">
+                <i class="social-icon fa fa-facebook fa-lg"></i>
+              </a>
+              <a href="https://twitter.com/theroadventures" title="Follow us on Twitter" class="twitter" target="_blank">
+                <i class="social-icon fa fa-twitter fa-lg"></i>
+              </a>
+              <a href="https://www.instagram.com/theroadventures/" title="Follow us on Instagram" class="instagram" target="_blank">
+                <i class="social-icon fa fa-instagram fa-lg"></i>
+              </a>
+            </div>
+            <div  class="social">
+              <a href="https://www.pinterest.com/theroadventures/" title="Follow us on Pinterest" class="pinterest" target="_blank">
+                <i class="social-icon fa fa-pinterest fa-lg"></i>
+              </a>
+              <a href="mailto:theroadventures@gmail.com?Subject=Roadventures%20Enquiry" target="_top" title="Email us" class="email">
+                <i class="social-icon fa fa-envelope fa-lg"></i>
+              </a>
+              <a href="contact.html" title="Fill our contact form" class="form">
+                <i class="social-icon fa fa-file-text fa-lg"></i>
+              </a>
+            </div>
+          </div>
+              <div id="copyright" class="col-sm-12 text-center">&copy; Copyright Roadventures 2016</div>
+          </div>
+        </div>
+      </footer>
+	</body>
+</html>

@@ -23,6 +23,11 @@ p {
   line-height: 37px;
 }
 
+@font-face {
+    font-family: "My Custom Font";
+    src: url(http://www.road-ventures.com/fonts/steelfish rg.ttf) format("truetype");
+}
+
 .hidden {
     display: none !important;
     visibility: hidden !important;
@@ -667,10 +672,11 @@ blockquote {
 
 .intro-header .post-heading h1{
   margin-top: 0;
-  font-size: 50px;
+  font-size: 55px;
   width: 460px;
   line-height: 0.9;
-  font-family: "Univers W01","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "My Custom Font", Verdana, Tahoma;
+  /*font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;*/
   text-transform: uppercase;
 }
 

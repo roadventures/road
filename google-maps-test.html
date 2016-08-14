@@ -4,7 +4,7 @@
     <style>
        #map {
         width: 100%;
-        height: 400px;
+        height: 80%;
       }
     </style>
   </head>
@@ -15,7 +15,7 @@
       function initMap() {
 		  var mapOptions = { 
 		  mapTypeId: google.maps.MapTypeId.TERRAIN,
-		  center: new google.maps.LatLng(47.690, -122.310),
+		  center: new google.maps.LatLng(56.807723,19.321021),
 		  zoom: 12
 		};
 
@@ -29,9 +29,16 @@
       {
 		var path = new google.maps.Polyline({
 			  path: [
-				  new google.maps.LatLng(47.656, -122.360),
-				  new google.maps.LatLng(47.656, -122.343),
-				  new google.maps.LatLng(47.690, -122.310)
+				  new google.maps.LatLng(60.160, 24.940),
+				  new google.maps.LatLng(59.323, 18.073),
+				  new google.maps.LatLng(55.671, 12.588),
+				  new google.maps.LatLng(53.546, 10.036),
+				  new google.maps.LatLng(52.342,  4.883),
+				  new google.maps.LatLng(48.843,  2.367),
+				  new google.maps.LatLng(43.937,  4.817),
+				  new google.maps.LatLng(45.447, 12.332),
+				  new google.maps.LatLng(47.569, 10.735),
+				  new google.maps.LatLng(52.516, 13.441)
 			  ], strokeColor: '#FF0000'
 			});
 		path.setOptions({ map: map });

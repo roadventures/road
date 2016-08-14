@@ -13,11 +13,28 @@
     <div id="map"></div>
     <script>
       function initMap() {
+		  var mapOptions = { 
+		  mapTypeId: google.maps.MapTypeId.TERRAIN,
+		  center: new google.maps.LatLng(47.690, -122.310),
+		  zoom: 12
+		};
+
         var mapDiv = document.getElementById('map');
-        var map = new google.maps.Map(mapDiv, {
-            center: {lat: 44.540, lng: -78.546},
-            zoom: 8
-        });
+		var map = new google.maps.Map(mapDiv, mapOptions);
+		
+		initRoute(map);
+      }
+      
+      function initRoute(map)
+      {
+		var path = new google.maps.Polyline({
+			  path: [
+				  new google.maps.LatLng(47.656, -122.360),
+				  new google.maps.LatLng(47.656, -122.343),
+				  new google.maps.LatLng(47.690, -122.310)
+			  ], strokeColor: '#FF0000'
+			});
+		path.setOptions({ map: map });
       }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1BLKeVUlcn8Ust3auydmu-U5kzeEviC4

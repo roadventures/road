@@ -13,10 +13,15 @@
     <div id="map"></div>
     <script>
       function initMap() {
+			var mapDiv = document.getElementById('map');
+			var mapDim = { height: $mapDiv.height(), width: $mapDiv.width() };
+			var mapBounds = initMapBounds();
+			var zoomLevel = getBoundsZoomLevel(mapBounds, mapDim);
+			
 		  var mapOptions = { 
 		  mapTypeId: google.maps.MapTypeId.TERRAIN,
 		  center: new google.maps.LatLng(56.807, 19.321),
-		  zoom: 12
+		  zoom: zoomLevel
 		};
 
         var mapDiv = document.getElementById('map');
@@ -25,24 +30,69 @@
 		initRoute(map);
       }
       
+      function initMapBounds()
+      {
+			var latlngList = routeCoordinates();
+
+			var bounds = new google.maps.LatLngBounds();
+			latlngList.each(function(n){
+			   bounds.extend(n);
+			});
+			return bounds;
+      }
+      
+      function routeCoordinates()
+      {
+		var latlngList = [];
+		  latlngList.push(new google.maps.LatLng(60.160, 24.940));
+		  latlngList.push(new google.maps.LatLng(59.323, 18.073));
+		  latlngList.push(new google.maps.LatLng(55.671, 12.588));
+		  latlngList.push(new google.maps.LatLng(53.546, 10.036));
+		  latlngList.push(new google.maps.LatLng(52.342,  4.883));
+		  latlngList.push(new google.maps.LatLng(48.843,  2.367));
+		  latlngList.push(new google.maps.LatLng(43.937,  4.817));
+		  latlngList.push(new google.maps.LatLng(45.447, 12.332));
+		  latlngList.push(new google.maps.LatLng(47.569, 10.735));
+		  latlngList.push(new google.maps.LatLng(52.516, 13.441));
+		  return latlngList;
+      }
+      
       function initRoute(map)
       {
 		var path = new google.maps.Polyline({
-			  path: [
-				  new google.maps.LatLng(60.160, 24.940),
-				  new google.maps.LatLng(59.323, 18.073),
-				  new google.maps.LatLng(55.671, 12.588),
-				  new google.maps.LatLng(53.546, 10.036),
-				  new google.maps.LatLng(52.342,  4.883),
-				  new google.maps.LatLng(48.843,  2.367),
-				  new google.maps.LatLng(43.937,  4.817),
-				  new google.maps.LatLng(45.447, 12.332),
-				  new google.maps.LatLng(47.569, 10.735),
-				  new google.maps.LatLng(52.516, 13.441)
-			  ], strokeColor: '#FF0000'
+			  path: routeCoordinates(), 
+			  strokeColor: '#FF0000'
 			});
 		path.setOptions({ map: map });
       }
+      
+      function getBoundsZoomLevel(bounds, mapDim) {
+		var WORLD_DIM = { height: 256, width: 256 };
+		var ZOOM_MAX = 21;
+
+		function latRad(lat) {
+			var sin = Math.sin(lat * Math.PI / 180);
+			var radX2 = Math.log((1 + sin) / (1 - sin)) / 2;
+			return Math.max(Math.min(radX2, Math.PI), -Math.PI) / 2;
+		}
+
+		function zoom(mapPx, worldPx, fraction) {
+			return Math.floor(Math.log(mapPx / worldPx / fraction) / Math.LN2);
+		}
+
+		var ne = bounds.getNorthEast();
+		var sw = bounds.getSouthWest();
+
+		var latFraction = (latRad(ne.lat()) - latRad(sw.lat())) / Math.PI;
+
+		var lngDiff = ne.lng() - sw.lng();
+		var lngFraction = ((lngDiff < 0) ? (lngDiff + 360) : lngDiff) / 360;
+
+		var latZoom = zoom(mapDim.height, WORLD_DIM.height, latFraction);
+		var lngZoom = zoom(mapDim.width, WORLD_DIM.width, lngFraction);
+
+		return Math.min(latZoom, lngZoom, ZOOM_MAX);
+	}
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1BLKeVUlcn8Ust3auydmu-U5kzeEviC4
 &callback=initMap">

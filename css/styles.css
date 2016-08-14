@@ -42,17 +42,16 @@ p {
 }
 
 .my-pages-menu li {
-
+  margin-right: 30px; 
 }
 
 .my-pages-navbar .my-pages-menu>li>a {
-    font-size: 1.1em;
-    color: #ffffff;
-    text-shadow: none;
-    text-transform: uppercase;
-    font-family: 'Oswald', sans-serif;
-    letter-spacing: 1.5px;
-    margin-right: 20px; 
+  font-size: 1.1em;
+  color: #ffffff;
+  text-shadow: none;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1.5px;
 }
 
 .my-pages-navbar .my-pages-menu>li>a:focus, .my-pages-navbar .my-pages-menu>li>a:hover {
@@ -105,11 +104,11 @@ p {
 /* MAIN CONTENT */
 .my-front-jumbo {
 	background: #eee url("../images/jumbotron.jpg") no-repeat center center;
-    width: 100%;
-    height: 600px;
-    margin-bottom: 0px;
-    background-size: cover;
-    position: relative;
+  width: 100%;
+  height: 700px;
+  margin-bottom: 0px;
+  background-size: cover;
+  position: relative;
 }
 
 #jumbo-text {
@@ -119,11 +118,15 @@ p {
 .my-front-jumbo h1,  .my-front-jumbo h2 {
 	margin: 0 auto;
 	text-align: center;
-    background: rgb(238, 238, 238); /* Fall-back for browsers that don't support rgba */
-    background: rgba(238, 238, 238, 0.5);
-    padding-top: 10px;
-    padding-bottom: 10px;
-        /*font-family: 'Kaushan Script', cursive;*/
+  background: rgb(238, 238, 238); /* Fall-back for browsers that don't support rgba */
+  background: rgba(238, 238, 238, 0.4);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 30px;
+}
+
+.my-front-jumbo h2 {
+  margin-top: 0px;
 }
 
 .read-more-button {
@@ -302,6 +305,7 @@ p {
 
 .my-top-banner img {
     width: 100%;
+    height: 700px;
 }
 .my-data-container {
     margin-top: 50px;
@@ -396,8 +400,7 @@ p {
     line-height: 50px;
     letter-spacing: 1px;
     color: #000000;
-    font-size: 120%;
-    /*font-weight: bold;*/ 
+    font-family: 'Oswald', sans-serif;
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
     box-shadow: 0 0 3px rgba(0,0,0,.3);
@@ -405,13 +408,13 @@ p {
     background: rgba(34, 204, 119, 1);
 }
 
-.my-tile-image:hover + .my-coming-soon-banner, .my-tile-image:focus + .my-coming-soon-banner, .my-tile-image:active + .my-coming-soon-banner {
+/*.my-tile-image:hover + .my-coming-soon-banner, .my-tile-image:focus + .my-coming-soon-banner, .my-tile-image:active + .my-coming-soon-banner {
     opacity: 1;
 }
 
 .my-coming-soon-banner:hover, .my-coming-soon-banner:focus, .my-coming-soon-banner:active {
     opacity: 1;
-}
+}*/
 
 
 /* END OF TILES */

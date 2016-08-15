@@ -16,12 +16,32 @@
 		<script>
 			function initMap() 
 			{
+				// The DIV that will contain the map
 				var mapDiv = document.getElementById('map');
+				// Calculate the area of the world we should focus on (depends on the routeCoordinates)
 				var mapBounds = initMapBounds();
+				// Calculate the correct zoom level needed to show the mapBounds in the DIV
 				var zoomLevel = getBoundsZoomLevel(mapBounds, mapDiv.clientWidth, mapDiv.clientHeight);
+				// Custom styled map
 				var mapStyle = getMapStyle();
+				// The options to use for the map
+				var mapOptions = getMapOptions();
 
-				var mapOptions = 
+				// This is the actual google maps class
+				var map = new google.maps.Map(mapDiv, mapOptions);
+
+				//Associate the styled map with the MapTypeId and set it to display.
+				var styledMapType = new google.maps.StyledMapType(mapStyle, { name: 'styled_map' });
+				map.mapTypes.set('styled_map', styledMapType);
+				map.setMapTypeId('styled_map');
+
+				// Draw the route on to the map
+				initRoute(map);
+			}
+			
+			function getMapOptions()
+			{
+				return 
 				{ 
 					/*mapTypeId: google.maps.MapTypeId.TERRAIN,*/
 					center: new google.maps.LatLng(56.807, 19.321),
@@ -33,22 +53,11 @@
 					},
 					mapTypeId: 'styled_map'
 				};
-
-				var mapDiv = document.getElementById('map');
-				var map = new google.maps.Map(mapDiv, mapOptions);
-
-				//Associate the styled map with the MapTypeId and set it to display.
-				var styledMapType = new google.maps.StyledMapType(mapStyle, { name: 'styled_map' });
-				map.mapTypes.set('styled_map', styledMapType);
-				map.setMapTypeId('styled_map');
-
-				initRoute(map);
 			}
 			
 			function getMapStyle()
 			{
-				return 
-				[{"featureType":"water","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.country","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.landcover","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#22c748"},{"weight":3.92}]},{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"on"},{"color":"#1fad34"},{"weight":2.7},{"hue":"#1c8a2c"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"on"},{"color":"#000000"},{"weight":1.64}]}]
+				return [{"featureType":"water","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.country","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.landcover","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#22c748"},{"weight":3.92}]},{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"on"},{"color":"#1fad34"},{"weight":2.7},{"hue":"#1c8a2c"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"on"},{"color":"#000000"},{"weight":1.64}]}]
 				;
 			}
 

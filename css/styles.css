@@ -333,6 +333,7 @@ p {
 /*    margin-left: 15px;*/
 }
 
+
 /*TILES */
 
 .my-main-tiles-section h1 {
@@ -438,6 +439,10 @@ p {
 
 
 /* DESTINATIONS SIDE BAR */
+.my-countries-list {
+  margin-top: 110px;
+}
+
 .my-list-group-item {
   color: #000000;
   border: none;
@@ -457,9 +462,10 @@ p {
 
 .my-list-group-item.active, .my-list-group-item.active:focus, .my-list-group-item.active:hover {
   z-index: 2;
-  color: #1aa2d9;
-  background-color: #ffffff;
   border: none;
+  background-color: #1aa2d9;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
 
 .my-dest-count {
@@ -647,6 +653,16 @@ p {
 /* END OF COMING SOON PAGE */
 
 /* ARTICLE PAGE */
+.share-banner {
+/*  position: fixed;
+  z-index: 25;
+  top: 0;
+  left: 0;*/
+  display: block;
+  background-color: #ffffff;
+  width: 100%;
+}
+
 .share-menu {
   list-style: none;
   margin: 10px auto; 

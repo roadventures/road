@@ -1,103 +1,114 @@
 <!DOCTYPE html>
 <html>
-  <head>
+	<head>
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
 	<!--<script src="js/jquery-3.1.0.slim.js"></script>-->
-    <style>
-       #map {
-        width: 100%;
-        height: 800px;
-      }
-    </style>
-  </head>
-  <body>
-    <h3>Roadventures custom map test with simple route</h3>
-    <div id="map"></div>
-    <script>
-      function initMap() {
-			var mapDiv = document.getElementById('map');
-			var mapBounds = initMapBounds();
-			var zoomLevel = getBoundsZoomLevel(mapBounds, mapDiv.clientWidth, mapDiv.clientHeight);
+	<style>
+		#map {
+			width: 400px;
+			height: 400px;
+		}
+	</style>
+	</head>
+	<body>
+		<h3>Roadventures custom map test with simple route</h3>
+		<div id="map"></div>
+		<script>
+			function initMap() 
+			{
+				var mapDiv = document.getElementById('map');
+				var mapBounds = initMapBounds();
+				var zoomLevel = getBoundsZoomLevel(mapBounds, mapDiv.clientWidth, mapDiv.clientHeight);
+				var mapStyle = getMapStyle();
 
-		  var mapOptions = { 
-		  mapTypeId: google.maps.MapTypeId.TERRAIN,
-		  center: new google.maps.LatLng(56.807, 19.321),
-		  zoom: zoomLevel
-		};
+				var mapOptions = 
+				{ 
+					mapTypeId: google.maps.MapTypeId.TERRAIN,
+					center: new google.maps.LatLng(56.807, 19.321),
+					zoom: zoomLevel,
+					styles: mapStyle
+				};
 
-        var mapDiv = document.getElementById('map');
-		var map = new google.maps.Map(mapDiv, mapOptions);
-		
-		initRoute(map);
-      }
-      
-      function initMapBounds()
-      {
-			var latlngList = routeCoordinates();
-			var bounds = new google.maps.LatLngBounds();
+				var mapDiv = document.getElementById('map');
+				var map = new google.maps.Map(mapDiv, mapOptions);
 
-			for (var i = 0, len = latlngList.length; i < len; i++) {
-			   bounds.extend(latlngList[i]);
+				initRoute(map);
 			}
 			
-			return bounds;
-      }
-      
-      function routeCoordinates()
-      {
-		var latlngList = [];
-		  latlngList.push(new google.maps.LatLng(60.160, 24.940));
-		  latlngList.push(new google.maps.LatLng(59.323, 18.073));
-		  latlngList.push(new google.maps.LatLng(55.671, 12.588));
-		  latlngList.push(new google.maps.LatLng(53.546, 10.036));
-		  latlngList.push(new google.maps.LatLng(52.342,  4.883));
-		  latlngList.push(new google.maps.LatLng(48.843,  2.367));
-		  latlngList.push(new google.maps.LatLng(43.937,  4.817));
-		  latlngList.push(new google.maps.LatLng(45.447, 12.332));
-		  latlngList.push(new google.maps.LatLng(47.569, 10.735));
-		  latlngList.push(new google.maps.LatLng(52.516, 13.441));
-		  return latlngList;
-      }
-      
-      function initRoute(map)
-      {
-		var path = new google.maps.Polyline({
-			  path: routeCoordinates(), 
-			  strokeColor: '#FF0000'
-			});
-		path.setOptions({ map: map });
-      }
-      
-      function getBoundsZoomLevel(bounds, mapDimensionsWidth, mapDimensionsHeight) {
-		var WORLD_DIM = { height: 256, width: 256 };
-		var ZOOM_MAX = 21;
+			function getMapStyle()
+			{
+				return 
+				[{"featureType":"water","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.country","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.landcover","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#22c748"},{"weight":3.92}]},{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"on"},{"color":"#1fad34"},{"weight":2.7},{"hue":"#1c8a2c"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"on"},{"color":"#000000"},{"weight":1.64}]}]
+			}
 
-		function latRad(lat) {
-			var sin = Math.sin(lat * Math.PI / 180);
-			var radX2 = Math.log((1 + sin) / (1 - sin)) / 2;
-			return Math.max(Math.min(radX2, Math.PI), -Math.PI) / 2;
-		}
+			function initMapBounds()
+			{
+				var latlngList = routeCoordinates();
+				var bounds = new google.maps.LatLngBounds();
 
-		function zoom(mapPx, worldPx, fraction) {
-			return Math.floor(Math.log(mapPx / worldPx / fraction) / Math.LN2);
-		}
+				for (var i = 0, len = latlngList.length; i < len; i++) {
+					bounds.extend(latlngList[i]);
+				}
 
-		var ne = bounds.getNorthEast();
-		var sw = bounds.getSouthWest();
+				return bounds;
+			}
 
-		var latFraction = (latRad(ne.lat()) - latRad(sw.lat())) / Math.PI;
+			function routeCoordinates()
+			{
+				var latlngList = [];
+				latlngList.push(new google.maps.LatLng(60.160, 24.940));
+				latlngList.push(new google.maps.LatLng(59.323, 18.073));
+				latlngList.push(new google.maps.LatLng(55.671, 12.588));
+				latlngList.push(new google.maps.LatLng(53.546, 10.036));
+				latlngList.push(new google.maps.LatLng(52.342,  4.883));
+				latlngList.push(new google.maps.LatLng(48.843,  2.367));
+				latlngList.push(new google.maps.LatLng(43.937,  4.817));
+				latlngList.push(new google.maps.LatLng(45.447, 12.332));
+				latlngList.push(new google.maps.LatLng(47.569, 10.735));
+				latlngList.push(new google.maps.LatLng(52.516, 13.441));
+				return latlngList;
+			}
 
-		var lngDiff = ne.lng() - sw.lng();
-		var lngFraction = ((lngDiff < 0) ? (lngDiff + 360) : lngDiff) / 360;
+			function initRoute(map)
+			{
+				var path = new google.maps.Polyline({
+					path: routeCoordinates(), 
+					strokeColor: '#FF0000'
+				});
+				path.setOptions({ map: map });
+			}
 
-		var latZoom = zoom(mapDimensionsWidth, WORLD_DIM.height, latFraction);
-		var lngZoom = zoom(mapDimensionsHeight, WORLD_DIM.width, lngFraction);
+			function getBoundsZoomLevel(bounds, mapDimensionsWidth, mapDimensionsHeight) 
+			{
+				var WORLD_DIM = { height: 256, width: 256 };
+				var ZOOM_MAX = 21;
 
-		return Math.min(latZoom, lngZoom, ZOOM_MAX);
-	}
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1BLKeVUlcn8Ust3auydmu-U5kzeEviC4
+				function latRad(lat) {
+					var sin = Math.sin(lat * Math.PI / 180);
+					var radX2 = Math.log((1 + sin) / (1 - sin)) / 2;
+					return Math.max(Math.min(radX2, Math.PI), -Math.PI) / 2;
+				}
+
+				function zoom(mapPx, worldPx, fraction) {
+					return Math.floor(Math.log(mapPx / worldPx / fraction) / Math.LN2);
+				}
+
+				var ne = bounds.getNorthEast();
+				var sw = bounds.getSouthWest();
+
+				var latFraction = (latRad(ne.lat()) - latRad(sw.lat())) / Math.PI;
+
+				var lngDiff = ne.lng() - sw.lng();
+				var lngFraction = ((lngDiff < 0) ? (lngDiff + 360) : lngDiff) / 360;
+
+				var latZoom = zoom(mapDimensionsWidth, WORLD_DIM.height, latFraction);
+				var lngZoom = zoom(mapDimensionsHeight, WORLD_DIM.width, lngFraction);
+
+				return Math.min(latZoom, lngZoom, ZOOM_MAX);
+			}
+		</script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1BLKeVUlcn8Ust3auydmu-U5kzeEviC4
 &callback=initMap">
-    </script>
-  </body>
+		</script>
+	</body>
 </html>

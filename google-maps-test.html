@@ -26,10 +26,12 @@
 					/*mapTypeId: google.maps.MapTypeId.TERRAIN,*/
 					center: new google.maps.LatLng(56.807, 19.321),
 					zoom: zoomLevel,
-					styles: mapStyle,
+					disableDefaultUI: true, 
+					/*styles: mapStyle,*/
 					mapTypeControlOptions: {
 						mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'styled_map']
-					}
+					},
+					mapTypeId: 'styled_map'
 				};
 
 				var mapDiv = document.getElementById('map');

@@ -217,6 +217,9 @@ p {
 	color: #909AA0;
   border: none;
   font-family: 'Oswald', sans-serif;
+  margin-top: 50px;
+  padding-top: 30px; 
+  padding-bottom: 30px;
 }
 
 .panel-footer h2 {
@@ -654,31 +657,68 @@ p {
 
 /* ARTICLE PAGE */
 .share-banner {
-/*  position: fixed;
-  z-index: 25;
-  top: 0;
-  left: 0;*/
   display: block;
   background-color: #ffffff;
   width: 100%;
 }
 
-.share-menu {
-  list-style: none;
-  margin: 10px auto; 
-}
-
 .share-menu a {
-  color: #333;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.share-menu i {
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  text-align: center;
+  padding-top: 7px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: all ease 0.3s;
+  -moz-transition: all ease 0.3s;
+  -webkit-transition: all ease 0.3s;
+  -o-transition: all ease 0.3s;
+  -ms-transition: all ease 0.3s;
+}
+
+.share-menu .fa-facebook {
+  color: #4060A5;
+  border: 2px solid #4060A5;
+}
+
+.share-menu .fa-twitter {
+  color: #00ABE3;
+  border: 2px solid #00ABE3;
+}
+
+.share-menu .fa-pinterest {
+  color: #cb2027;
+  border: 2px solid #cb2027; 
+}
+
+.share-menu .fa-envelope {
+  color: #123456;
+  border: 2px solid #123456;
+}
+
+.share-menu i:hover {
   text-decoration: none;
+  transition: all ease 0.3s;
+  -moz-transition: all ease 0.3s;
+  -webkit-transition: all ease 0.3s;
+  -o-transition: all ease 0.3s;
+  -ms-transition: all ease 0.3s;
 }
 
-.share-menu li {
-  display: inline;
-  margin-right: 40px;
+.share-menu-text {
+  color: #333;
+  font-family: 'Oswald', sans-serif;
+  margin-bottom: 20px;
+  display: block;
 }
-
-
 
 .capital-letter {
   font-size: 120px;

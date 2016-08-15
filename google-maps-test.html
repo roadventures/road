@@ -26,7 +26,7 @@
 					/*mapTypeId: google.maps.MapTypeId.TERRAIN,*/
 					center: new google.maps.LatLng(56.807, 19.321),
 					zoom: zoomLevel,
-					disableDefaultUI: true, 
+					/*disableDefaultUI: true, */
 					/*styles: mapStyle,*/
 					mapTypeControlOptions: {
 						mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'styled_map']
@@ -49,6 +49,7 @@
 			{
 				return 
 				[{"featureType":"water","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.country","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.landcover","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#22c748"},{"weight":3.92}]},{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"on"},{"color":"#1fad34"},{"weight":2.7},{"hue":"#1c8a2c"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"on"},{"color":"#000000"},{"weight":1.64}]}]
+				;
 			}
 
 			function initMapBounds()

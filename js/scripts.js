@@ -45,8 +45,8 @@ function SendEmailForm()
 
 	if(FirstName == "" || LastName == "" || Email == ""  || Message == "")
 	{	
-		//alert("Please fill in all the fields before submitting.");
-		//return;
+		alert("Please fill in all the fields before submitting.");
+		return;
 	}
 
 	$.ajax

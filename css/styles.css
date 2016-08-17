@@ -487,7 +487,6 @@ p {
 /* END OF DESTINATIONS SIDE BAR */
 
 /* CONTACT FORM */
-
 .contact-container {
   background: #eaebeb url("../images/middle-east/banner/017.jpg") no-repeat;
   height: 100%;
@@ -495,36 +494,43 @@ p {
   opacity: 1;
 }
 .form-container {
-/*  margin: 80px 300px;*/
-  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 #contact-form h1{
   display: block;
   margin-bottom: 30px;
-  /*color: #1aa2d9;*/
   color: #444;
   text-transform: uppercase;
 }
 
 #contact-form .input {
-  display: inline-block;
+  display: block;
   border: none;
-  width: 800px;
-  margin-right: 2%;
   margin-bottom: 12px;
   box-sizing: border-box;
 }
 
-#contact-form .big {
-  width: 98%;
+#contact-form .small {
+  display: inline-block;
+  width: 49.5%;
+}
+
+#contact-first-name, #contact-last-name {
+  width: 100%;
+}
+
+#contact-email, #contact-message {
+  width: 100%;
 }
 
 #contact-form .input input {
   background-color: #ffffff;
   border: none;
   border-radius: 5px;
-  width: 800px;
   line-height: 48px;
   padding: 0 15px;
   display: block;
@@ -536,7 +542,6 @@ p {
   background-color: #ffffff;
   border: none;
   border-radius: 4px;
-  width: 800px;
   line-height: 100px;
   padding: 0 15px;
   outline-color: #000;
@@ -558,10 +563,12 @@ p {
 
 .error-message {
   color: red;
-  visibility: hidden;
+/*  display: none;*/
 }
 
-.error-message span {
+#firstname-error, #lastname-error {
+  display: inline-block;
+  width: 49.5%;
 }
 
 /* END OF CONTACT FORM */

@@ -1,7 +1,22 @@
+<<<<<<< HEAD
+=======
+/*
+$( document ).ajaxError(function() 
+{
+	alert("Triggered ajaxError handler.");
+});
+*/
+>>>>>>> javascript test
 
 function EmailSubmitFormSuccess(returnText)
 {
-	alert('Success!\n' + returnText);
+	alert("Success function with values: " + returnText);
+	var jsonValues = JSON.parse(returnText);
+	if(jsonValues == "SUCCESS")
+	{
+		// Show success info somehow
+		alert('Success!\n');
+	}
 }
 
 function EmailSubmitFormError(xhr, textStatus, errorThrown)
@@ -12,6 +27,7 @@ function EmailSubmitFormError(xhr, textStatus, errorThrown)
 		if(xhr.responseText != null)
 		{
 			var jsonValues = JSON.parse(xhr.responseText);
+			alert(jsonValues);
 			alert('An error occurred: ' + jsonValues.Message);
 
 			/*
@@ -32,8 +48,8 @@ function SendEmailForm()
 
 	if(FirstName == "" || LastName == "" || Email == ""  || Message == "")
 	{	
-		alert("Please fill in all the fields before submitting.");
-		return;
+		//alert("Please fill in all the fields before submitting.");
+		//return;
 	}
 
 	$.ajax

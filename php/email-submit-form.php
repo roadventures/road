@@ -6,6 +6,11 @@
 	https://en.wikipedia.org/wiki/Cross-site_request_forgery
 	*/
 	header('Access-Control-Allow-Origin: *');
+	
+	function JSONReturnValue($returnValue)
+	{
+		echo json_encode($returnValue);
+	}
 
 	if ((include 'common/nocache.php') == FALSE) 
 	{
@@ -17,6 +22,7 @@
 		echo 'Failed to include http_response_code.php';
 	}
 
+	// ReturnErrorMessage does not return JSON yet
     function ReturnErrorMessage($error) 
     {
         http_response_code(400);
@@ -111,12 +117,12 @@
 						'X-Mailer: PHP/' . phpversion();
 			@mail($email_to, $email_subject, $validated_email_message, $headers);  */
 			//http_response_code(200);
-			echo "Thank you for contacting us. We will be in touch with you very soon.";
+			JSONReturnValue("SUCCESS");
 		}
 		else
 		{
 			http_response_code(405);
-			echo "<BR>An unspecified error occurred, you may try again in a moment.";
+			JSONReturnValue("ERROR");
 		}
 	}
 	
@@ -160,7 +166,13 @@ $Message = GetValueFromPostOrGet('message');
 if(empty($FirstName) || empty($LastName) || empty($Email) || empty($Message))
 {
 	http_response_code(400);
-	echo '<BR>We are sorry, but there appears to be a problem with the form you submitted (some values appeared empty).';
+		
+	$errorArray = array();
+	if(empty($FirstName)) array_push($errorArray, "ERR_FIRSTNAME");
+	if(empty($LastName)) array_push($errorArray, "ERR_LASTNAME");
+	if(empty($Email)) array_push($errorArray, "ERR_EMAIL");
+	if(empty($Message)) array_push($errorArray, "ERR_MESSAGE");
+	JSONReturnValue($errorArray);
 }
 else
 {

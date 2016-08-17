@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-=======
 /*
 $( document ).ajaxError(function() 
 {
 	alert("Triggered ajaxError handler.");
 });
 */
->>>>>>> javascript test
 
 function EmailSubmitFormSuccess(returnText)
 {

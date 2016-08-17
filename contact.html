@@ -78,15 +78,19 @@
             <div class="input">
               <input required type="text" id="contact-first-name" name="first-name" placeholder="First name"></input>
             </div>
+            <div id="firstname-error" class="error-message"><span>First name is required.</span></div>
             <div class="input">
               <input required type="text" id="contact-last-name" name="last-name" placeholder="Last name"></input>
             </div>
-            <div class="input big">
+            <div id="lastname-error" class="error-message">Last name is required.</div>
+            <div class="input">
               <input required type="email" id="contact-email" name="email" placeholder="Email"></input>
             </div>
+            <div id="email-error" class="error-message"><p>Email is required. </p></div>
             <div class="input big">
               <textarea required name="message" id="contact-message" placeholder="Your message"></textarea>
             </div>
+            <div id="message-error" class="error-message"><p>Message is required.</p></div>
             <div>
               <input type="button" name="submit" id="submit-button" value="Send your message" onClick="SendEmailForm();"></input> 
             </div>

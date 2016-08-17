@@ -1,3 +1,4 @@
+
 function EmailSubmitFormSuccess(returnText)
 {
 	alert('Success!\n' + returnText);

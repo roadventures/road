@@ -563,12 +563,11 @@ p {
 
 .error-message {
   color: red;
-/*  display: none;*/
-}
+  font-size: 18px;
+  color: white;
+  background-color: orange;
 
-#firstname-error, #lastname-error {
-  display: inline-block;
-  width: 49.5%;
+/*  display: none;*/
 }
 
 /* END OF CONTACT FORM */

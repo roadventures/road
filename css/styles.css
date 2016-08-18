@@ -198,7 +198,7 @@ p {
 
 #latest-routes {
   background-color: #e2cfb0;
-  padding-bottom: 30px;
+  padding-bottom: 80px;
 }
 
 #latest-routes h1 {
@@ -217,7 +217,7 @@ p {
 	color: #909AA0;
   border: none;
   font-family: 'Oswald', sans-serif;
-  margin-top: 50px;
+/*  margin-top: 50px;*/
   padding-top: 30px; 
   padding-bottom: 30px;
 }
@@ -334,6 +334,10 @@ p {
 #sidebar {
   border: none;
 /*    margin-left: 15px;*/
+}
+
+.my-main-container {
+  padding-bottom: 80px;
 }
 
 

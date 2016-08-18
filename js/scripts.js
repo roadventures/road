@@ -11,8 +11,7 @@ function EmailSubmitFormSuccess(returnText)
 	var jsonValues = JSON.parse(returnText);
 	if(jsonValues == "SUCCESS")
 	{
-		// Show success info somehow
-		alert('Success!\n');
+		document.getElementById('contact-success-text').style.display = 'block';
 	}
 }
 

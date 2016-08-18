@@ -562,12 +562,21 @@ p {
 }
 
 .error-message {
-  color: red;
+  opacity: 0.5;
   font-size: 18px;
   color: white;
-  background-color: orange;
+  background-color: red;
+  display: none;
+}
 
-/*  display: none;*/
+#contact-success-text {
+  color: #ffffff;
+  background-color: #1aa2d9;
+  margin-bottom: 50px;
+  padding:8px 10px;
+  text-align: center;
+  border-radius: 4px;
+  display: none;
 }
 
 /* END OF CONTACT FORM */

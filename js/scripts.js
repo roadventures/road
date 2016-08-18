@@ -12,6 +12,7 @@ function EmailSubmitFormSuccess(returnText)
 	if(jsonValues == "SUCCESS")
 	{
 		document.getElementById('contact-success-text').style.display = 'block';
+		// alert('SUCCESS' + jsonValues);
 	}
 }
 
@@ -35,6 +36,22 @@ function EmailSubmitFormError(xhr, textStatus, errorThrown)
 	}
 }
 
+function ClearErrorEmailForm()
+{
+	document.getElementById('firstname-error').style.display = 'none';
+	document.getElementById('contact-first-name').style.border="none";
+
+	document.getElementById('lastname-error').style.display = 'none';
+	document.getElementById('contact-last-name').style.border="none";
+
+	document.getElementById('email-error').style.display = 'none';
+	document.getElementById('contact-email').style.border="none";
+
+	document.getElementById('message-error').style.display = 'none';
+	document.getElementById('contact-message').style.border="none";
+}
+
+
 function SendEmailForm()
 {
 	var FirstName = document.getElementById("contact-first-name").value;
@@ -42,12 +59,35 @@ function SendEmailForm()
 	var Email = document.getElementById("contact-email").value;
 	var Message = document.getElementById("contact-message").value;
 
-	if(FirstName == "" || LastName == "" || Email == ""  || Message == "")
-	{	
-		alert("Please fill in all the fields before submitting.");
+	ClearErrorEmailForm();
+
+
+	if(FirstName == "" || LastName == "" || Email == "" || Message == "")
+	{
+		if(FirstName == "")
+		{	
+			document.getElementById('firstname-error').style.display = 'block';
+			document.getElementById('contact-first-name').style.border="3px solid #cb2027";
+		}
+		if(LastName == "")
+		{	
+			document.getElementById('lastname-error').style.display = 'block';
+			document.getElementById('contact-last-name').style.border="3px solid #cb2027";
+		}
+		if(Email == "")
+		{	
+			document.getElementById('email-error').style.display = 'block';
+			document.getElementById('contact-email').style.border="3px solid #cb2027";
+		}
+		if(Message == "")
+		{	
+			document.getElementById('message-error').style.display = 'block';
+			document.getElementById('contact-message').style.border="3px solid #cb2027";
+		}
 		return;
 	}
 
+	
 	$.ajax
 	(
 		{ 

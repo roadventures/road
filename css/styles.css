@@ -561,12 +561,12 @@ p {
   outline: none;
 }
 
-.error-message {
-  opacity: 0.5;
+#firstname-error, #lastname-error, #email-error, #message-error {
   font-size: 18px;
-  color: white;
-  background-color: red;
+  color: #cb2027;
   display: none;
+  padding-left: 3px;
+  padding-bottom: 3px;
 }
 
 #contact-success-text {

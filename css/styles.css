@@ -1032,6 +1032,12 @@ blockquote {
     padding-left: 60px;
     padding-right: 60px;
   }
+  #submit-button {
+    font-size: 12px;
+  }
+  .responsive-header {
+    font-size: 25px;
+  }
 
   /* COMING SOON FORM */
   #subscribe-form .input {

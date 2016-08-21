@@ -996,70 +996,8 @@ blockquote {
   }
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media (max-width: 767px) {
   /* MENU */
-  .my-pages-menu li {
-    margin-right: 0px;
-    background-color: #333333;
-  }
-  .my-pages-menu > li > .my-menu-dropdown > li {
-    font-size: 20px;
-  }
-  .my-pages-menu > li > .my-menu-dropdown > li > a {
-    color: #bbb;
-  }
-  #logo {
-    font-size: 200%;
-  }
-
-  /* CONTACT FORM */
-  #contact-form .small, #contact-form .big {
-    width: 100%;
-  }
-  .form-container {
-    padding-left: 60px;
-    padding-right: 60px;
-  }
-
-  /* COMING SOON FORM */
-  #subscribe-form .input {
-    width: 50%;
-  }
-  #coming-soon-main-text {
-    font-size: 120%;
-  }
-
-  /* ARTICLE */
-  .intro-header .post-heading h1 {
-    font-size: 40px;
-  }
-  .capital-letter {
-    font-size: 80px;
-    padding-top: 22px;
-    padding-right: 6px;
-  }
-  /* DESTINATIONS */
-  .my-list-group-item {
-    display: inline;
-    padding: 0;
-  }
-  .my-dest-count {
-    float: none;
-    margin-right: 30px;
-    margin-left: 10px;
-  }
-  #sidebar {
-    background-color: white;
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  /* MENU */
-  .my-pages-menu ul{  
-    position: static;
-    width:100%;
-  }
   .my-pages-menu li {
     margin-right: 0px;
     background-color: #333333;

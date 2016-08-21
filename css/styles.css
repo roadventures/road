@@ -29,8 +29,11 @@ p {
 }
 
 /* HEADER */
-.site-header {
-  z-index: 9000;
+.navbar {
+  position: static;
+}
+.navbar .nav > li {
+  z-index: 1001;
 }
 
 #navbar {
@@ -55,13 +58,13 @@ p {
   background-color: #333333;
   margin-bottom: 0px;
   padding-top: 8px;
-  z-index: 10000;
+/*  z-index: 10000;*/
 }
 
 .my-pages-menu li {
   margin-right: 30px; 
   font-size: 23px;
-  z-index: 20000;
+/*  z-index: 20000;*/
 }
 
 .my-pages-navbar .my-pages-menu>li>a {
@@ -388,7 +391,6 @@ p {
 .my-tile-item {
   overflow: hidden;
   margin-bottom: 30px;
-/*    position: relative;*/
 }
 
 .my-tile-image {

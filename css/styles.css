@@ -138,7 +138,7 @@ p {
   height: 700px;
   margin-bottom: 0px;
   background-size: cover;
-  position: relative;
+/*  position: relative;*/
   padding-top: 0px;
 }
 
@@ -539,7 +539,7 @@ p {
   padding-left: 30px;
 }
 
-#contact-form h1{
+.responsive-header {
   display: block;
   margin-bottom: 30px;
   color: #444;

@@ -725,6 +725,11 @@ p {
 /* END OF COMING SOON PAGE */
 
 /* ARTICLE PAGE */
+.my-article-container {
+  padding-bottom: 80px;
+  background-color: #ffffff;
+}
+
 .share-banner {
   display: block;
   background-color: #ffffff;

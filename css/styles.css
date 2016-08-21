@@ -662,7 +662,7 @@ p {
 
 #coming-soon-form-container {
   color: #ffffff;
-  margin-top: 100px; /*change back to 190px*/
+  margin-top: 190px;
   margin-bottom: 50px;
   text-align: center;
 /*    background: rgb(238, 238, 238);  Fall-back for browsers that don't support rgba 

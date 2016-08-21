@@ -50,12 +50,13 @@ p {
   background-color: #333333;
   margin-bottom: 0px;
   padding-top: 8px;
+  z-index: 10000;
 }
 
 .my-pages-menu li {
   margin-right: 30px; 
   font-size: 23px;
-  z-index: 10000;
+  z-index: 20000;
 }
 
 .my-pages-navbar .my-pages-menu>li>a {

@@ -496,7 +496,7 @@ p {
 }
 
 .my-list-group-item.active, .my-list-group-item.active:focus, .my-list-group-item.active:hover {
-  z-index: 2;
+/*  z-index: 2;*/
   border: none;
   background-color: #1aa2d9;
   color: #ffffff;

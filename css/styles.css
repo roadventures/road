@@ -30,7 +30,8 @@ p {
 
 /* HEADER */
 .navbar {
-  position: static;
+  position: absolute;
+  width: 100%
 }
 .navbar .nav > li {
   z-index: 1001;
@@ -143,7 +144,7 @@ p {
 }
 
 #jumbo-text {
-  padding: 0px;
+  padding: 60px 0px;
 }
 
 .my-front-jumbo h1,  .my-front-jumbo h2 {
@@ -1041,9 +1042,10 @@ blockquote {
   }
   #submit-button {
     font-size: 12px;
+    padding: 0 12px;
   }
   .responsive-header {
-    font-size: 25px;
+    font-size: 28px;
   }
 
   /* COMING SOON FORM */

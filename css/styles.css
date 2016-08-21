@@ -995,7 +995,7 @@ blockquote {
   }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 481px) and (max-width: 767px) {
   /* MENU */
   .my-pages-menu li {
     margin-right: 0px;
@@ -1052,6 +1052,13 @@ blockquote {
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+        .my-pages-menu ul{  
+           position: static;
+           width:100%;
+        }
+    }
 /* END OF MEDIA QUERIES */
 
 

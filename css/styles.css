@@ -28,6 +28,10 @@ p {
   visibility: hidden !important;
 }
 
+.menu-fix {
+  position: static;
+}
+
 /* HEADER */
 .navbar {
   position: static;

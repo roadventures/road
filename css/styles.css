@@ -30,8 +30,7 @@ p {
 
 /* HEADER */
 .navbar {
-  position: absolute;
-  width: 100%
+  position: static;
 }
 .navbar .nav > li {
   z-index: 1001;

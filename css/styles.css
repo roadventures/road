@@ -628,15 +628,25 @@ p {
 
 .my-team {
   text-align: center;
+  padding-right: 5%;
+  padding-left: 5%;
 }
+
+/*.my-team div {
+  margin-left: 10px;
+}*/
 
 .my-passion {
   background-color: #e2cfb0;
+  padding-right: 5%;
+  padding-left: 5%;
 }
 
 .my-partners {
   padding-right: 15px;
   padding-left: 15px;
+  padding-right: 5%;
+  padding-left: 5%;
 }
 
 .my-team ,.my-passion, .my-partners {

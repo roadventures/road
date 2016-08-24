@@ -140,11 +140,11 @@ function ShowErrorEmailForm(IsFirstNameError, IsLastNameError, IsEmailError, IsM
 
 function ClearErrorAddSubscriberForm()
 {
-	document.getElementById('name-error').style.display = 'none';
-	document.getElementById('contact-name').style.border="none";
+	document.getElementById('subscribe-name-error').style.display = 'none';
+	document.getElementById('subscribe-name').style.border="none";
 
-	document.getElementById('email-error').style.display = 'none';
-	document.getElementById('contact-email').style.border="none";
+	document.getElementById('subscribe-email-error').style.display = 'none';
+	document.getElementById('subscribe-email').style.border="none";
 }
 
 function ShowErrorAddSubscriberForm(IsNameError, IsEmailError)

@@ -577,7 +577,7 @@ p {
   line-height: 48px;
   padding: 0 15px;
   display: block;
-  outline-color: #000;
+  outline-color: #1aa2d9;
   box-sizing: border-box;
 }
 
@@ -587,7 +587,7 @@ p {
   border-radius: 4px;
   line-height: 100px;
   padding: 0 15px;
-  outline-color: #000;
+  outline-color: #1aa2d9;
   resize: none;
 }
 
@@ -605,12 +605,14 @@ p {
   font-size: 18px;
 }
 
-#firstname-error, #lastname-error, #email-error, #message-error {
+.error-message {
   font-size: 18px;
-  color: #cb2027;
+  color: #ffffff;
   display: none;
   padding-left: 3px;
   padding-bottom: 3px;
+  background: rgb(203, 32, 39); 
+  background: rgba(203, 32, 39, 0.6);
 }
 
 #contact-success-text {
@@ -712,7 +714,7 @@ p {
   line-height: 42px;
   padding: 0 15px;
   display: block;
-  outline-color: #000;
+  outline-color: #1aa2d9;
   box-sizing: border-box;
 }
 

@@ -5,14 +5,22 @@ $( document ).ajaxError(function()
 });
 */
 
+function showErrorOverlay(jsonValues)
+{
+	alert("errors" + JSON.stringify(jsonValues);
+}
+
 function EmailSubmitFormSuccess(returnText)
 {
-	alert("Success function with values: " + returnText);
 	var jsonValues = JSON.parse(returnText);
 	if(jsonValues == "SUCCESS")
 	{
 		document.getElementById('contact-success-text').style.display = 'block';
 		// alert('SUCCESS' + jsonValues);
+	}
+	else
+	{
+		showErrorOverlay(jsonValues);
 	}
 }
 

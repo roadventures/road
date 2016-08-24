@@ -5,14 +5,81 @@ $( document ).ajaxError(function()
 });
 */
 
-function EmailSubmitFormSuccess(returnText)
+function showAddSubscriberErrorOverlay(jsonValues)
 {
-	alert("Success function with values: " + returnText);
-	var jsonValues = JSON.parse(returnText);
+	if(jsonValues.status == "ERRORS!")
+	{
+		var IsNameError = false;
+		var IsEmailError = false;
+		$(jsonValues.errors).each(function()
+		{
+			if(this.errorString == "ERR_NAME") IsNameError = true;
+			else if(this.errorString == "ERR_EMAIL") IsEmailError = true;
+		});
+		ShowErrorAddSubscriberForm(IsNameError, IsEmailError);
+	}
+}
+
+function showEmailErrorOverlay(jsonValues)
+{
+	if(jsonValues.status == "ERRORS!")
+	{
+		var IsFirstNameError = false;
+		var IsLastNameError = false;
+		var IsEmailError = false;
+		var IsMessageError = false;
+		$(jsonValues.errors).each(function()
+		{
+			if(this.errorString == "ERR_FIRSTNAME") IsFirstNameError = true;
+			else if(this.errorString == "ERR_LASTNAME") IsLastNameError = true;
+			else if(this.errorString == "ERR_EMAIL") IsEmailError = true;
+			else if(this.errorString == "ERR_MESSAGE") IsMessageError = true;	
+		});
+		ShowErrorEmailForm(IsFirstNameError, IsLastNameError, IsEmailError, IsMessageError);
+	}
+}
+
+function AddSubscriberFormSuccess(returnText)
+{
+	var jsonValues = null;
+	try
+	{
+		jsonValues = JSON.parse(returnText);
+	}
+	catch(err)
+	{
+		jsonValues = returnText;
+	}
+	
 	if(jsonValues == "SUCCESS")
 	{
 		document.getElementById('contact-success-text').style.display = 'block';
-		// alert('SUCCESS' + jsonValues);
+	}
+	else
+	{
+		showAddSubscriberErrorOverlay(jsonValues);
+	}
+}
+
+function EmailSubmitFormSuccess(returnText)
+{
+	var jsonValues = null;
+	try
+	{
+		jsonValues = JSON.parse(returnText);
+	}
+	catch(err)
+	{
+		jsonValues = returnText;
+	}
+	
+	if(jsonValues == "SUCCESS")
+	{
+		document.getElementById('contact-success-text').style.display = 'block';
+	}
+	else
+	{
+		showEmailErrorOverlay(jsonValues);
 	}
 }
 
@@ -20,18 +87,14 @@ function EmailSubmitFormError(xhr, textStatus, errorThrown)
 {
 	if(xhr != null)
 	{
-		//console.log(xhr);
 		if(xhr.responseText != null)
 		{
 			var jsonValues = JSON.parse(xhr.responseText);
-			alert(jsonValues);
-			alert('An error occurred: ' + jsonValues.Message);
-
-			/*
-			alert("Message: " + jsonValues.Message);
-			alert("StackTrace: " + jsonValues.StackTrace);
-			alert("ExceptionType: " + jsonValues.ExceptionType);
-			*/
+			console.log(JSON.stringify(jsonValues));
+			console.log('An error occurred: ' + jsonValues.Message);
+			console.log("Message: " + jsonValues.Message);
+			console.log("StackTrace: " + jsonValues.StackTrace);
+			console.log("ExceptionType: " + jsonValues.ExceptionType);
 		}
 	}
 }
@@ -51,6 +114,52 @@ function ClearErrorEmailForm()
 	document.getElementById('contact-message').style.border="none";
 }
 
+function ShowErrorEmailForm(IsFirstNameError, IsLastNameError, IsEmailError, IsMessageError)
+{
+	if(IsFirstNameError)
+	{	
+		document.getElementById('firstname-error').style.display = 'block';
+		document.getElementById('contact-first-name').style.border="3px solid #cb2027";
+	}
+	if(IsLastNameError)
+	{	
+		document.getElementById('lastname-error').style.display = 'block';
+		document.getElementById('contact-last-name').style.border="3px solid #cb2027";
+	}
+	if(IsEmailError)
+	{	
+		document.getElementById('email-error').style.display = 'block';
+		document.getElementById('contact-email').style.border="3px solid #cb2027";
+	}
+	if(IsMessageError)
+	{	
+		document.getElementById('message-error').style.display = 'block';
+		document.getElementById('contact-message').style.border="3px solid #cb2027";
+	}	
+}
+
+function ClearErrorAddSubscriberForm()
+{
+	document.getElementById('name-error').style.display = 'none';
+	document.getElementById('contact-name').style.border="none";
+
+	document.getElementById('email-error').style.display = 'none';
+	document.getElementById('contact-email').style.border="none";
+}
+
+function ShowErrorAddSubscriberForm(IsNameError, IsEmailError)
+{
+	if(IsNameError)
+	{	
+		document.getElementById('name-error').style.display = 'block';
+		document.getElementById('contact-name').style.border="3px solid #cb2027";
+	}
+	if(IsEmailError)
+	{	
+		document.getElementById('email-error').style.display = 'block';
+		document.getElementById('contact-email').style.border="3px solid #cb2027";
+	}
+}
 
 function SendEmailForm()
 {
@@ -61,32 +170,11 @@ function SendEmailForm()
 
 	ClearErrorEmailForm();
 
-
 	if(FirstName == "" || LastName == "" || Email == "" || Message == "")
 	{
-		if(FirstName == "")
-		{	
-			document.getElementById('firstname-error').style.display = 'block';
-			document.getElementById('contact-first-name').style.border="3px solid #cb2027";
-		}
-		if(LastName == "")
-		{	
-			document.getElementById('lastname-error').style.display = 'block';
-			document.getElementById('contact-last-name').style.border="3px solid #cb2027";
-		}
-		if(Email == "")
-		{	
-			document.getElementById('email-error').style.display = 'block';
-			document.getElementById('contact-email').style.border="3px solid #cb2027";
-		}
-		if(Message == "")
-		{	
-			document.getElementById('message-error').style.display = 'block';
-			document.getElementById('contact-message').style.border="3px solid #cb2027";
-		}
+		ShowErrorEmailForm(FirstName == "", LastName == "", Email == "", Message == "");
 		return;
 	}
-
 	
 	$.ajax
 	(
@@ -115,12 +203,14 @@ function AddSubscriberForm()
 	var Name = document.getElementById("subscribe-first-name").value;
 	var Email = document.getElementById("subscribe-email").value;
 
+	ClearErrorAddSubscriberForm();
+
 	if(Name == "" || Email == "")
-	{	
-		alert("Please fill in all the fields before submitting.");
+	{
+		ShowErrorAddSubscriberForm(Name == "", Email == "");
 		return;
 	}
-	
+
 	$.ajax
 	(
 		{ 
@@ -135,7 +225,7 @@ function AddSubscriberForm()
 	         	email: Email
 	        },
 	         
-	        success: EmailSubmitFormSuccess,
+	        success: AddSubscriberFormSuccess,
             error: EmailSubmitFormError
 		}
 	);

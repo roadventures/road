@@ -51,7 +51,7 @@
 
                 $protocol = (isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0');
 
-                echo $protocol . ' ' . $code . ' ' . $text;
+                echo $protocol . ' ' . $code . ' ' . $text . ' ';
 
                 $GLOBALS['http_response_code'] = $code;
             } 

@@ -17,12 +17,22 @@ function EmailSubmitFormSuccess(returnText)
 	{
 		jsonValues = JSON.parse(returnText);
 	}
-
-	if(jsonValues == null)
+	catch(err)
 	{
 		try
 		{
 			jsonValues = JSON.parse($(returnText).find("["));
+		}
+		catch(err)
+		{
+			try
+			{
+				jsonValues = JSON.parse($(returnText).find("\""));
+			}
+			catch(err)
+			{
+				jsonValues = returnText;
+			}
 		}
 	}
 	

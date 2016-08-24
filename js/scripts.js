@@ -7,7 +7,7 @@ $( document ).ajaxError(function()
 
 function showErrorOverlay(jsonValues)
 {
-	alert("errors" + JSON.stringify(jsonValues);
+	alert("errors" + JSON.stringify(jsonValues));
 }
 
 function EmailSubmitFormSuccess(returnText)

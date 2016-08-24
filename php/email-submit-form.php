@@ -26,11 +26,12 @@
     function ReturnErrorMessage($error) 
     {
         http_response_code(400);
-		$Result = "<BR>We are very sorry, but there were error(s) found with the form you submitted. ";
-        $Result .= "These errors appear below.<br /><br />";
-        $Result .= $error . "<br /><br />";
-        $Result .= "Please go back and fix these errors.<br /><br />";
-		exit($Result);
+		$Result = array("ERROR!",
+			"We are very sorry, but there were error(s) found with the form you submitted. ",
+			"These errors appear below.",
+			$error,
+			"Please go back and fix these errors.");
+		exit(json_encode($Result));
     }
 
     function clean_string($string) 
@@ -122,7 +123,7 @@
 		else
 		{
 			http_response_code(405);
-			JSONReturnValue("ERROR");
+			JSONReturnValue("ERROR!");
 		}
 	}
 	

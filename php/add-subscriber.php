@@ -17,14 +17,20 @@
 		echo 'Failed to include http_response_code.php';
 	}
 
+	function JSONReturnValue($returnValue)
+	{
+		echo json_encode($returnValue);
+	}
+
     function ReturnErrorMessage($error) 
     {
-        http_response_code(400);
-		$Result = "<BR>We are very sorry, but there were error(s) found with the form you submitted. ";
-        $Result .= "These errors appear below.<br /><br />";
-        $Result .= $error . "<br /><br />";
-        $Result .= "Please go back and fix these errors.<br /><br />";
-		exit($Result);
+		http_response_code(400);
+		$Result = array("ERROR!",
+			"We are very sorry, but there were error(s) found with the form you submitted. ",
+			"These errors appear below.",
+			$error,
+			"Please go back and fix these errors.");
+		exit(json_encode($Result));
     }
 
     function clean_string($string) 
@@ -102,12 +108,12 @@
 						'X-Mailer: PHP/' . phpversion();
 			@mail($email_to, $email_subject, $validated_email_message, $headers);  */
 			//http_response_code(200);
-			echo "Thank you for subscribing to our articles. A new article will be coming soon.";
+			JSONReturnValue("SUCCESS");
 		}
 		else
 		{
 			http_response_code(405);
-			echo "<BR>An unspecified error occurred, you may try again in a moment.";
+			JSONReturnValue("ERROR!");
 		}
 	}
 	
@@ -159,7 +165,11 @@ $Email = GetValueFromPostOrGet('email');
 if(empty($Name) || empty($Email))
 {
 	http_response_code(400);
-	echo '<BR>We are sorry, but there appears to be a problem with the form you submitted (some values appeared empty).';
+		
+	$errorArray = array();
+	if(empty($Name)) array_push($errorArray, "ERR_NAME");
+	if(empty($Email)) array_push($errorArray, "ERR_EMAIL");
+	JSONReturnValue($errorArray);
 }
 else
 {

@@ -6,11 +6,6 @@
 	https://en.wikipedia.org/wiki/Cross-site_request_forgery
 	*/
 	header('Access-Control-Allow-Origin: *');
-	
-	function JSONReturnValue($returnValue)
-	{
-		echo json_encode($returnValue);
-	}
 
 	if ((include 'common/nocache.php') == FALSE) 
 	{
@@ -21,18 +16,21 @@
 	{
 		echo 'Failed to include http_response_code.php';
 	}
-
-	// ReturnErrorMessage does not return JSON yet
-    function ReturnErrorMessage($error) 
-    {
-        http_response_code(400);
-		$Result = array("ERROR!",
-			"We are very sorry, but there were error(s) found with the form you submitted. ",
-			"These errors appear below.",
-			$error,
-			"Please go back and fix these errors.");
-		exit(json_encode($Result));
-    }
+	
+	function JSONReturnValueSuccess()
+	{
+		exit(json_encode(array("status" => "SUCCESS", "errors" => null)));
+	}
+	
+	function JSONReturnValueError($returnValue)
+	{
+		exit(json_encode(array("status" => "ERRORS!", "errors" => $returnValue)));
+	}
+	
+	function createError($errorString, $errorReason)
+	{
+		return array("errorString" => $errorString, "errorReason" => $errorReason);
+	}
 
     function clean_string($string) 
     {
@@ -42,43 +40,37 @@
      
 	function validateInput($FirstName, $LastName, $Email, $Message)
 	{     
-		$error_message = "";
+		$errorArray = array();
 
-		$first_name = $FirstName;
-		$last_name = $LastName;
-		$email_from = $Email;
-		$comments = $Message;
-		 
 		$email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
-
-		if(!preg_match($email_exp,$email_from)) {
-			$error_message .= 'The Email Address you entered does not appear to be valid.<br />';
+		if(!preg_match($email_exp, $Email)) {
+			array_push($errorArray, createError("ERR_EMAIL", "INVALID"));
 		}
 			
 		$string_exp = "/^[A-Za-z .'-]+$/";
-		if(!preg_match($string_exp,$first_name)) {
-			$error_message .= 'The First Name you entered does not appear to be valid.<br />';
+		if(!preg_match($string_exp, $FirstName)) {
+			array_push($errorArray, createError("ERR_FIRSTNAME", "INVALID"));
 		}
 
-		if(!preg_match($string_exp,$last_name)) {
-			$error_message .= 'The Last Name you entered does not appear to be valid.<br />';
+		if(!preg_match($string_exp, $LastName)) {
+			array_push($errorArray, createError("ERR_LASTNAME", "INVALID"));
 		}
 		  
-		if(strlen($comments) < 2) {
-			$error_message .= 'The Comments you entered do not appear to be valid.<br />';
+		if(strlen($Message) < 2) {
+			array_push($errorArray, createError("ERR_MESSAGE", "INVALID"));
 		}
 		
-		if(strlen($error_message) > 0) 
+		if(sizeof($errorArray) > 0) 
 		{
-			ReturnErrorMessage($error_message);
+			JSONReturnValueError($errorArray);
 		}
 		else
 		{
 			$email_message = "Form details below.\n\n";
-			$email_message .= "First Name: " . clean_string($first_name)."\n";
-			$email_message .= "Last Name: " . clean_string($last_name)."\n";
-			$email_message .= "Email: " . clean_string($email_from)."\n";
-			$email_message .= "Comments: " . clean_string($comments)."\n";
+			$email_message .= "First Name: " . clean_string($FirstName)."\n";
+			$email_message .= "Last Name: " . clean_string($LastName)."\n";
+			$email_message .= "Email: " . clean_string($Email)."\n";
+			$email_message .= "Comments: " . clean_string($Message)."\n";
 			return $email_message;
 		}
 		return "";
@@ -118,12 +110,11 @@
 						'X-Mailer: PHP/' . phpversion();
 			@mail($email_to, $email_subject, $validated_email_message, $headers);  */
 			//http_response_code(200);
-			JSONReturnValue("SUCCESS");
+			JSONReturnValueSuccess();
 		}
 		else
 		{
-			http_response_code(405);
-			JSONReturnValue("ERROR!");
+			JSONReturnValueError("Unspecified");
 		}
 	}
 	
@@ -166,14 +157,12 @@ $Message = GetValueFromPostOrGet('message');
 
 if(empty($FirstName) || empty($LastName) || empty($Email) || empty($Message))
 {
-	http_response_code(400);
-		
 	$errorArray = array();
-	if(empty($FirstName)) array_push($errorArray, "ERR_FIRSTNAME");
-	if(empty($LastName)) array_push($errorArray, "ERR_LASTNAME");
-	if(empty($Email)) array_push($errorArray, "ERR_EMAIL");
-	if(empty($Message)) array_push($errorArray, "ERR_MESSAGE");
-	JSONReturnValue($errorArray);
+	if(empty($FirstName)) array_push($errorArray, createError("ERR_FIRSTNAME", "EMPTY"));
+	if(empty($LastName)) array_push($errorArray, createError("ERR_LASTNAME", "EMPTY"));
+	if(empty($Email)) array_push($errorArray, createError("ERR_EMAIL", "EMPTY"));
+	if(empty($Message)) array_push($errorArray, createError("ERR_MESSAGE", "EMPTY"));
+	JSONReturnValueError($errorArray);
 }
 else
 {

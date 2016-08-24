@@ -17,21 +17,20 @@
 		echo 'Failed to include http_response_code.php';
 	}
 
-	function JSONReturnValue($returnValue)
+	function JSONReturnValueSuccess()
 	{
-		echo json_encode($returnValue);
+		exit(json_encode(array("status" => "SUCCESS", "errors" => null)));
 	}
-
-    function ReturnErrorMessage($error) 
-    {
-		http_response_code(400);
-		$Result = array("ERROR!",
-			"We are very sorry, but there were error(s) found with the form you submitted. ",
-			"These errors appear below.",
-			$error,
-			"Please go back and fix these errors.");
-		exit(json_encode($Result));
-    }
+	
+	function JSONReturnValueError($returnValue)
+	{
+		exit(json_encode(array("status" => "ERRORS!", "errors" => $returnValue)));
+	}
+	
+	function createError($errorString, $errorReason)
+	{
+		return array("errorString" => $errorString, "errorReason" => $errorReason);
+	}
 
     function clean_string($string) 
     {
@@ -41,25 +40,21 @@
      
 	function validateInput($Name, $Email)
 	{     
-		$error_message = "";
-
-		$name = $Name;
-		$email_from = $Email;
+		$errorArray = array();
 		 
 		$email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
-
-		if(!preg_match($email_exp,$email_from)) {
-			$error_message .= 'The Email Address you entered does not appear to be valid.<br />';
+		if(!preg_match($email_exp, $Email)) {
+			array_push($errorArray, createError("ERR_EMAIL", "INVALID"));
 		}
 			
 		$string_exp = "/^[A-Za-z .'-]+$/";
-		if(!preg_match($string_exp,$name)) {
-			$error_message .= 'The Name you entered does not appear to be valid.<br />';
+		if(!preg_match($string_exp, $Name)) {
+			array_push($errorArray, createError("ERR_NAME", "INVALID"));
 		}
 		
-		if(strlen($error_message) > 0) 
+		if(sizeof($errorArray) > 0) 
 		{
-			ReturnErrorMessage($error_message);
+			JSONReturnValueError($errorArray);
 		}
 		else
 		{
@@ -108,12 +103,11 @@
 						'X-Mailer: PHP/' . phpversion();
 			@mail($email_to, $email_subject, $validated_email_message, $headers);  */
 			//http_response_code(200);
-			JSONReturnValue("SUCCESS");
+			JSONReturnValueSuccess();
 		}
 		else
 		{
-			http_response_code(405);
-			JSONReturnValue("ERROR!");
+			JSONReturnValueError("Unspecified");
 		}
 	}
 	
@@ -164,12 +158,10 @@ $Email = GetValueFromPostOrGet('email');
 
 if(empty($Name) || empty($Email))
 {
-	http_response_code(400);
-		
 	$errorArray = array();
-	if(empty($Name)) array_push($errorArray, "ERR_NAME");
-	if(empty($Email)) array_push($errorArray, "ERR_EMAIL");
-	JSONReturnValue($errorArray);
+	if(empty($Name)) array_push($errorArray, createError("ERR_NAME", "EMPTY"));
+	if(empty($Email)) array_push($errorArray, createError("ERR_EMAIL", "EMPTY"));
+	JSONReturnValueError($errorArray);
 }
 else
 {

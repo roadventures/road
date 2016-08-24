@@ -151,13 +151,13 @@ function ShowErrorAddSubscriberForm(IsNameError, IsEmailError)
 {
 	if(IsNameError)
 	{	
-		document.getElementById('name-error').style.display = 'block';
-		document.getElementById('contact-name').style.border="3px solid #cb2027";
+		document.getElementById('subscribe-name-error').style.display = 'block';
+		document.getElementById('subscribe-name').style.border="3px solid #cb2027";
 	}
 	if(IsEmailError)
 	{	
-		document.getElementById('email-error').style.display = 'block';
-		document.getElementById('contact-email').style.border="3px solid #cb2027";
+		document.getElementById('subscribe-email-error').style.display = 'block';
+		document.getElementById('subscribe-email').style.border="3px solid #cb2027";
 	}
 }
 
@@ -200,7 +200,7 @@ function SendEmailForm()
 
 function AddSubscriberForm()
 {
-	var Name = document.getElementById("subscribe-first-name").value;
+	var Name = document.getElementById("subscribe-name").value;
 	var Email = document.getElementById("subscribe-email").value;
 
 	ClearErrorAddSubscriberForm();

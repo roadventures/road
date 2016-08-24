@@ -12,7 +12,20 @@ function showErrorOverlay(jsonValues)
 
 function EmailSubmitFormSuccess(returnText)
 {
-	var jsonValues = JSON.parse(returnText);
+	var jsonValues = null;
+	try
+	{
+		jsonValues = JSON.parse(returnText);
+	}
+
+	if(jsonValues == null)
+	{
+		try
+		{
+			jsonValues = JSON.parse($(returnText).find("["));
+		}
+	}
+	
 	if(jsonValues == "SUCCESS")
 	{
 		document.getElementById('contact-success-text').style.display = 'block';

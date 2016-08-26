@@ -672,7 +672,7 @@ p {
 
 /* COMING SOON PAGE */
 .coming-soon-container {
-    background: #eaebeb url("../images/coming-soon/high-res/scotland-moors.jpg") no-repeat;
+    background: #eaebeb url("../images/coming-soon/low-res/scotland-moors.jpg") no-repeat;
     background-size: cover;
 }
 

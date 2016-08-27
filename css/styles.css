@@ -531,8 +531,8 @@ p {
 
 /* CONTACT FORM */
 .contact-container {
-  background: #eaebeb url("../images/middle-east/banner/017.jpg") no-repeat;
-  height: 100%;
+  background: #eaebeb url("../images/contact/low-res/iran-mountain.jpg") no-repeat;
+  padding: 60px 0px;
   background-size: cover;
   opacity: 1;
 }

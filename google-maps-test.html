@@ -13,7 +13,17 @@
 	<body>
 		<h3>Roadventures custom map test with simple route</h3>
 		<div id="map"></div>
+		<div>
+			<h1>For calculating route fill in the following fields:</h1>
+			<input type="text" id="Start" placeholder="Starting Point"></input>
+			<input type="text" id="End" placeholder="Destination"></input>
+			<input type="button" value="Calculate route" onClick="calculateRoute()"></input>
+		</div>
+		
 		<script>
+			// This variable maintains a reference to the actual google map element
+			var googleMap = null;
+			
 			function initMap() 
 			{
 				// The DIV that will contain the map
@@ -28,15 +38,15 @@
 				var mapOptions = getMapOptions(zoomLevel);
 
 				// This is the actual google maps class
-				var map = new google.maps.Map(mapDiv, mapOptions);
+				googleMap = new google.maps.Map(mapDiv, mapOptions);
 
 				//Associate the styled map with the MapTypeId and set it to display.
 				var styledMapType = new google.maps.StyledMapType(mapStyle, { name: 'styled_map' });
-				map.mapTypes.set('styled_map', styledMapType);
-				map.setMapTypeId('styled_map');
+				googleMap.mapTypes.set('styled_map', styledMapType);
+				googleMap.setMapTypeId('styled_map');
 
 				// Draw the route on to the map
-				initRoute(map);
+				//initRoute(googleMap);
 			}
 			
 			function getMapOptions(zoomLevel)
@@ -211,6 +221,90 @@
 				var lngZoom = zoom(mapDimensionsHeight, WORLD_DIM.width, lngFraction);
 
 				return Math.min(latZoom, lngZoom, ZOOM_MAX);
+			}
+			
+			var directionsDisplay = null;
+			function calculateRoute()
+			{
+				var startPos = document.getElementById("Start").value;
+				var endPos = document.getElementById("End").value;
+				var directionsService = new google.maps.DirectionsService();
+				
+				directionsDisplay = new google.maps.DirectionsRenderer();
+				directionsDisplay.setMap(googleMap);
+				
+				var request = {
+					origin: startPos,
+					destination: endPos,
+					travelMode: 'DRIVING',
+					transitOptions: null,
+					drivingOptions: null,
+					unitSystem: google.maps.UnitSystem.METRIC,
+					waypoints: [
+						/*{
+						  location: 'Joplin, MO',
+						  stopover: false
+						},{
+						  location: 'Oklahoma City, OK',
+						  stopover: true
+						}*/
+					],
+					optimizeWaypoints: false,
+					provideRouteAlternatives: false,
+					avoidHighways: false,
+					avoidTolls: false,
+					region: ""
+				};
+				directionsService.route(request, 
+					function(result, status) 
+					{
+						if (status == 'OK') 
+						{
+							directionsDisplay.setDirections(result);
+						}
+						else
+						{
+							console.log("Error: " + status);
+						}
+					}
+				);
+				/*
+{
+  origin: LatLng | String | google.maps.Place,
+  destination: LatLng | String | google.maps.Place,
+  travelMode: TravelMode,
+  transitOptions: TransitOptions,
+  drivingOptions: DrivingOptions,
+  unitSystem: UnitSystem,
+  waypoints[]: DirectionsWaypoint,
+  optimizeWaypoints: Boolean,
+  provideRouteAlternatives: Boolean,
+  avoidHighways: Boolean,
+  avoidTolls: Boolean,
+  region: String
+}
+
+{
+  origin: 'Chicago, IL',
+  destination: 'Los Angeles, CA',
+  waypoints: [
+    {
+      location: 'Joplin, MO',
+      stopover: false
+    },{
+      location: 'Oklahoma City, OK',
+      stopover: true
+    }],
+  provideRouteAlternatives: false,
+  travelMode: 'DRIVING',
+  drivingOptions: {
+    departureTime: new Date(),
+    trafficModel: 'pessimistic'
+  }
+  unitSystem: google.maps.UnitSystem.IMPERIAL
+}
+
+				*/
 			}
 		</script>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1BLKeVUlcn8Ust3auydmu-U5kzeEviC4

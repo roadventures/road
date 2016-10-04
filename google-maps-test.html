@@ -9,14 +9,28 @@
 			height: 400px;
 		}
 	</style>
+	
+	<script type="text/javascript">
+		function onclick_destination(event)
+		{
+			// Here we should add dynamically more inputs
+		}
+	</script>
 	</head>
 	<body>
 		<h3>Roadventures custom map test with simple route</h3>
 		<div id="map"></div>
 		<div>
 			<h1>For calculating route fill in the following fields:</h1>
-			<input type="text" id="Start" placeholder="Starting Point"></input>
-			<input type="text" id="End" placeholder="Destination"></input>
+			<input type="text" id="Destination_1" placeholder="Destination #1" onclick="onclick_destination(this);"></input><BR>
+			<input type="text" id="Destination_2" placeholder="Destination #2" onclick="onclick_destination(this);"></input><BR>
+			<input type="text" id="Destination_3" placeholder="Destination #3" onclick="onclick_destination(this);"></input><BR>
+			<input type="text" id="Destination_4" placeholder="Destination #4" onclick="onclick_destination(this);"></input><BR>
+			<input type="text" id="Destination_5" placeholder="Destination #5" onclick="onclick_destination(this);"></input><BR>
+			<input type="text" id="Destination_6" placeholder="Destination #6" onclick="onclick_destination(this);"></input><BR>
+			<input type="text" id="Destination_7" placeholder="Destination #7" onclick="onclick_destination(this);"></input><BR>
+			<input type="text" id="Destination_8" placeholder="Destination #8" onclick="onclick_destination(this);"></input><BR>
+			<input type="text" id="Destination_9" placeholder="Destination #9" onclick="onclick_destination(this);"></input><BR>
 			<input type="button" value="Calculate route" onClick="calculateRoute()"></input>
 		</div>
 		
@@ -226,8 +240,32 @@
 			var directionsDisplay = null;
 			function calculateRoute()
 			{
-				var startPos = document.getElementById("Start").value;
-				var endPos = document.getElementById("End").value;
+				var destinations = [];
+				var Looping = true;
+				var Index = 1;
+				while(Looping)
+				{
+					var curDestinationElement = document.getElementById("Destination_" + Index);
+					if(curDestinationElement != null && curDestinationElement.value != "")
+					{
+						destinations.push(curDestinationElement.value);
+					}
+					else
+					{
+						Looping = false;
+					}
+					Index++;
+				}
+				console.log("#Destinations=" + destinations.length + "=" + destinations)
+				var startPos = destinations[0];
+				var endPos = destinations[destinations.length - 1];
+				var waypoints = [];
+				for(ii = 1; ii < destinations.length - 1; ii++)
+				{
+					var waypoint = { location: destinations[ii], stopover: false };
+					waypoints.push(waypoint);
+				}
+				console.log("#Waypoints=" + waypoints)
 				var directionsService = new google.maps.DirectionsService();
 				
 				directionsDisplay = new google.maps.DirectionsRenderer();
@@ -240,7 +278,7 @@
 					transitOptions: null,
 					drivingOptions: null,
 					unitSystem: google.maps.UnitSystem.METRIC,
-					waypoints: [
+					waypoints: waypoints
 						/*{
 						  location: 'Joplin, MO',
 						  stopover: false
@@ -248,7 +286,7 @@
 						  location: 'Oklahoma City, OK',
 						  stopover: true
 						}*/
-					],
+					,
 					optimizeWaypoints: false,
 					provideRouteAlternatives: false,
 					avoidHighways: false,

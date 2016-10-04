@@ -269,9 +269,12 @@
 				console.log("#Waypoints=" + waypoints.length);
 				var directionsService = new google.maps.DirectionsService();
 				
+				if(directionsDisplay != null)
+				{
+					directionsDisplay.setDirections({routes: []});
+				}
 				directionsDisplay = new google.maps.DirectionsRenderer();
 				directionsDisplay.setMap(googleMap);
-				directionsDisplay.setDirections({routes: []});
 				
 				var request = {
 					origin: startPos,

@@ -272,6 +272,7 @@
 				if(directionsDisplay != null)
 				{
 					directionsDisplay.setDirections({routes: []});
+					directionsDisplay.setMap(null);
 				}
 				directionsDisplay = new google.maps.DirectionsRenderer();
 				directionsDisplay.setMap(googleMap);

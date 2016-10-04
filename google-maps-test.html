@@ -270,6 +270,7 @@
 				
 				directionsDisplay = new google.maps.DirectionsRenderer();
 				directionsDisplay.setMap(googleMap);
+				directionsDisplay.setDirections({routes: []});
 				
 				var request = {
 					origin: startPos,

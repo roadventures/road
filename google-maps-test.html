@@ -32,6 +32,9 @@
 			<input type="text" id="Destination_8" placeholder="Destination #8" onclick="onclick_destination(this);"></input><BR>
 			<input type="text" id="Destination_9" placeholder="Destination #9" onclick="onclick_destination(this);"></input><BR>
 			<input type="button" value="Calculate route" onClick="calculateRoute()"></input>
+			<BR>
+			<h1>Map options:</h1>
+			<input type="text" id="RouteLineColor" placeholder="RouteLineColor" value="#00cc00"></input><BR>
 		</div>
 		
 		<script>
@@ -277,7 +280,7 @@
 				directionsDisplay = new google.maps.DirectionsRenderer({
 										polylineOptions: {
 											strokeWeight: 5,
-											strokeColor: "#cb2027"
+											strokeColor: document.getElementById("RouteLineColor").value
 										},
 										markerOptions: { /*https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions*/
 											label: "",

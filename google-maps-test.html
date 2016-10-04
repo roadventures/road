@@ -64,7 +64,86 @@
 			
 			function getMapStyle()
 			{
-				var mapStyle = [{"featureType":"water","elementType":"geometry.fill","stylers":[{"visibility":"on"}]},{"featureType":"administrative.country","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"landscape.natural.landcover","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#22c748"},{"weight":3.92}]},{"featureType":"landscape.natural.landcover","elementType":"all","stylers":[{"visibility":"on"},{"color":"#1fad34"},{"weight":2.7},{"hue":"#1c8a2c"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"on"},{"color":"#000000"},{"weight":1.64}]}];
+				var mapStyle = [
+			    {
+			        "featureType": "water",
+			        "elementType": "all",
+			        "stylers": [
+			            {
+			                "visibility": "on"
+			            },
+			            {
+			                "color": "#46bcec"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "landscape",
+			        "elementType": "all",
+			        "stylers": [
+			            {
+			                "color": "#ffeed4"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road",
+			        "elementType": "all",
+			        "stylers": [
+			            {
+			                "saturation": -100
+			            },
+			            {
+			                "lightness": 45
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road.highway",
+			        "elementType": "all",
+			        "stylers": [
+			            {
+			                "visibility": "simplified"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "road.arterial",
+			        "elementType": "labels.icon",
+			        "stylers": [
+			            {
+			                "visibility": "off"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "administrative",
+			        "elementType": "labels.text.fill",
+			        "stylers": [
+			            {
+			                "color": "#444444"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "transit",
+			        "elementType": "all",
+			        "stylers": [
+			            {
+			                "visibility": "off"
+			            }
+			        ]
+			    },
+			    {
+			        "featureType": "poi",
+			        "elementType": "all",
+			        "stylers": [
+			            {
+			                "visibility": "off"
+			            }
+			        ]
+			    }
+			]						
 				return mapStyle;
 			}
 

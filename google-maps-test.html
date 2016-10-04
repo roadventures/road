@@ -274,7 +274,15 @@
 					directionsDisplay.setDirections({routes: []});
 					directionsDisplay.setMap(null);
 				}
-				directionsDisplay = new google.maps.DirectionsRenderer();
+				directionsDisplay = new google.maps.DirectionsRenderer({
+										polylineOptions: {
+											strokeColor: "#8b0013"
+										},
+										markerOptions: { /*https://developers.google.com/maps/documentation/javascript/reference#MarkerOptions*/
+											label: "",
+											visible: true
+										}
+									});
 				directionsDisplay.setMap(googleMap);
 				
 				var request = {

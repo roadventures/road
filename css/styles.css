@@ -244,6 +244,11 @@ p {
   letter-spacing: 1px;
 }
 
+.thumbnail {
+  overflow: hidden;
+  position: relative;
+}
+
 /* END OF MAIN CONTENT */
 
 /* FOOTER */

@@ -636,6 +636,7 @@ p {
   text-align: center;
   padding-right: 5%;
   padding-left: 5%;
+  display: none;
 }
 
 /*.my-team div {
